@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>Course Registration</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- Place favicon.ico in the root directory -->
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/favicon.png">
+
+   <!-- CSS here  -->
+   <link rel="stylesheet" href="assets/css/register.css">
+   <!-- css end  here-->
+</head>
+
+<body>
+   <div class="right_img">
+       <div class="title">Skillfest</div>
+       <div class="subtitle">44:44</div>
+       <p class="description">
+           Welcome to Skillfest 44:44, a comprehensive 3-month program designed to equip you with a meticulously curated skill set.
+           This program is aimed at providing a broad overview of technical expertise, personal development, and real-world exposure.
+       </p>
+   </div>
+   <div class="course-form">
+       
+      
+   
+       <form action="#" method="POST" name="register">
+
+           <h2>Course Registration</h2>
+
+           <div class="form-group">
+               <label for="name">Name</label>
+               <input type="text" name="name" id="name" placeholder="Enter your name" required>
+           </div>
+           <div class="form-group">
+               <label for="email">Email</label>
+               <input type="email" name="email" id="email" placeholder="Enter your email" required>
+           </div>
+
+           <div class="form-group">
+               <label for="phone">Phone</label>
+               <input type="tel" name="phone" id="phone" placeholder="Enter your phone number" required>
+           </div>
+
+           <div class="form-group">
+               <label for="gender">Gender</label>
+               <input type="text" name="gender" id="gender" placeholder="Gender" required>
+           </div>
+
+           <div class="form-group">
+               <label for="address">Address</label>
+               <input type="text" name="address" id="address" placeholder="Enter your address" required>
+           </div>
+
+           <div class="form-group">
+               <div class="course">
+                   <label for="courses" name="courses">Preferred Courses</label>
+                   <select id="courses" onchange="calculatePrice()">
+                       <option value="0">Choose Courses</option>
+                       <option value="4444">Skillfest 44:44</option>
+                       <option value="3999">Graphic Design</option>
+                       <option value="3999">Video Editing</option>
+                       <option value="2999">Canva Masterclass</option>
+                       <option value="3999">UI Design</option>
+                       <option value="2999">Digital Marketing</option>
+                   </select>
+               </div>
+           </div>
+           
+           <div class="upload-container">
+               <div id="uploadForm" enctype="multipart/form-data">
+                   <label for="file">Upload Payment</label>
+                   <input type="file" id="fileInput" name="file" required>
+               </div>
+           </div>
+           
+           <h3>Total Price: <span id="price">NPR. 0</span></h3>
+
+           <button class="submit_btn" type="submit" name="submit">Submit</button>
+           
+   <script>
+       function calculatePrice() {
+           const courses = document.getElementById('courses');
+           const priceDisplay = document.getElementById('price');
+           const selectedValue = parseInt(courses.value, 10);
+           
+           if (!isNaN(selectedValue)) {
+               priceDisplay.textContent = 'NPR. ' + selectedValue.toLocaleString();
+           } else {
+               priceDisplay.textContent = 'NPR. 0';
+           }
+       }
+       </script>
+
+<script>
+   document.getElementById("registrationForm").addEventListener("submit", function(event) {
+       event.preventDefault();
+       
+       let formData = {
+           name: document.getElementById("name").value,
+           email: document.getElementById("email").value,
+           phone: document.getElementById("phone").value,
+           gender: document.getElementById("gender").value,
+           address: document.getElementById("address").value,
+           courses: document.getElementById("courses").value
+       };
+   
+       fetch("https://script.google.com/macros/s/AKfycbxTq4l1vfltL7h9_lhoJJ3zPT_ZLqfwzURgizPLG_4RwjEZpAq3jmwMrdBOL0JgB9S_GQ/exec", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify(formData)
+       })
+       .then(response => response.text())
+       .then(data => alert(data))
+       .catch(error => console.error('Error:', error));
+   });
+   </script>
+   
+       
+</body>
+
+</html>
